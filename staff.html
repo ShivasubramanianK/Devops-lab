@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Attendance System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:95%;
+    max-width:1000px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:25px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+input,select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    grid-column:span 2;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#084298;
+}
+
+table{
+    width:100%;
+    margin-top:30px;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:nth-child(even){
+    background:#f5f5f5;
+}
+
+table tr:hover{
+    background:#dbeafe;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>📋 Staff Attendance Management</h1>
+
+<div class="form">
+
+<input type="text" id="name" placeholder="Staff Name">
+
+<input type="text" id="id" placeholder="Staff ID">
+
+<input type="date" id="date">
+
+<select id="status">
+<option>Present</option>
+<option>Absent</option>
+<option>Late</option>
+</select>
+
+<input type="time" id="in">
+
+<input type="time" id="out">
+
+<button onclick="addAttendance()">Save Attendance</button>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Staff Name</th>
+<th>Staff ID</th>
+<th>Date</th>
+<th>Status</th>
+<th>Check In</th>
+<th>Check Out</th>
+</tr>
+
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+function addAttendance(){
+
+let name=document.getElementById("name").value;
+let id=document.getElementById("id").value;
+let date=document.getElementById("date").value;
+let status=document.getElementById("status").value;
+let inTime=document.getElementById("in").value;
+let outTime=document.getElementById("out").value;
+
+if(name=="" || id=="" || date==""){
+alert("Please fill all required fields");
+return;
+}
+
+let row="<tr><td>"+name+"</td><td>"+id+"</td><td>"+date+"</td><td>"+status+"</td><td>"+inTime+"</td><td>"+outTime+"</td></tr>";
+
+document.getElementById("tableBody").innerHTML+=row;
+
+document.getElementById("name").value="";
+document.getElementById("id").value="";
+document.getElementById("date").value="";
+document.getElementById("in").value="";
+document.getElementById("out").value="";
+
+}
+
+</script>
+
+</body>
+</html>
